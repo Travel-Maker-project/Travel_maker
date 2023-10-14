@@ -1,17 +1,12 @@
 # Travel_maker
-# ⭐ 오후반 스터디 그룹 ⭐
+# 👍🏼 Travel Maker
 
-## ✈️ 소개
-
-- ###  6개월간 진행하는 빅데이터 솔루션 융합 S/W 개발자 양성과정에서 추가적인 공부를 하고싶은 사람만을 모아 만든 스터디그룹입니다.
-
-- ### 수업 중 배운 코드나 외부에서 가져온 문제들을 풀고, 코드를 공유하며 해결하고 학습하는 공간입니다.
+## ✅프로젝트 안건 및 사용 기술 스택 소개
 
 <br/>
 
 ## 💬 사용중인 소통 앱
-- ### 카카오톡
-- ### 디스코드 : [Study-Java](https://discord.gg/aEyhS9Vv)
+- ### 디스코드 : [Study-Java]([https://discord.gg/aEyhS9Vv](https://discord.gg/pY2dRJRZ))
 
 <br/>
 
