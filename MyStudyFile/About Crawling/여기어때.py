@@ -1,10 +1,14 @@
 from requests import get
 from bs4 import BeautifulSoup
+from selenium import webdriver
+
+webdriver.Chrome();
 
 
 def extract_yeogi_lodgin(keyword) :
     url = 'https://www.goodchoice.kr/product/result?keyword=' + f'{keyword}'
     response = get(url)
+    
     results = []
 
     if response.status_code == 200:
