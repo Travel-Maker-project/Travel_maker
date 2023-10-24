@@ -1,8 +1,8 @@
 import json
 from openpyxl import Workbook
 
-f = open('Festival.json', 'r', -1, 'utf-8')
-dataList = json.load(f)
+with open('Festival.json', 'r', encoding='utf-8') as f :
+    dataList = json.load(f)
 
 print(len(dataList))
 wb = Workbook()
@@ -22,6 +22,7 @@ for i in range(len(dataList)):
         ws[f"I{i}"] = 'RECOMMEND_TRAVEL_MAPLEVEL'
         ws[f"J{i}"] = 'RECOMMEND_TRAVEL_TEL'
         ws[f"K{i}"] = 'RECOMMEND_TRAVEL_TITLE'
+        ws[f"F{i}"] = 'RECOMMEND_TRAVEL_CONTENT_ID'
     
     ws[f"B{i + 1}"] = ob['addr1'] + ob['addr2']
     ws[f"C{i + 1}"] = ob['eventstartdate']
@@ -32,6 +33,7 @@ for i in range(len(dataList)):
     ws[f"I{i + 1}"] = ob['mlevel']
     ws[f"J{i + 1}"] = ob['tel']
     ws[f"K{i + 1}"] = ob['title']
+    ws[f"F{i + 1}"] = ob['contentid']
     
 
 wb.save('Festival.xlsx')
