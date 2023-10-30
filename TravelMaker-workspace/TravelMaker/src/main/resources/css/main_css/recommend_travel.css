@@ -9,9 +9,11 @@
 		padding: 0;
 	}
 	body {
+		width:100%;
     	padding: 0;
     	margin: 0;
     	height: 1500px;
+    	box-sizing: border-box;
  	}
  	.top {
      	border-bottom: 2px solid rgba(255,255,255,0.4);
@@ -113,6 +115,7 @@
 	 }
 	 .bottom_area > ul > li >a{
 	     color: #666666;
+	     display: inline-block;
 	     width:90px;
 	     height: 30px;
 	     text-align: center;
@@ -124,6 +127,7 @@
 	     transition-duration : 0.5s;
 	 }
 	 .bottom_area > ul > li> a:hover {
+	     display: inline-block;
 	     border: 1px solid white;
 	     border-radius: 50px;
 	     color: mediumslateblue;
