@@ -28,13 +28,7 @@
             <img src="${dto.recommend_travel_img}"/>
         </div>
 
-        <div class="content_subimg">
-            <ul>
-                <li><img src="이미지샘플/수지.png"></li>
-                <li><img src="이미지샘플/짱구.png"></li>
-                <li><img src="이미지샘플/맹구.png"></li>
-            </ul>
-        </div>
+       
 
         <div class="detail">
             <h3>상세정보</h3>

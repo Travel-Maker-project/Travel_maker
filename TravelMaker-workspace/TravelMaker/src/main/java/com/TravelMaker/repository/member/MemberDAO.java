@@ -15,5 +15,11 @@ public interface MemberDAO {
 
 	TravelMaker_MemberDTO checkUser(TravelMaker_MemberDTO dto);
 
+	TravelMaker_MemberDTO selectOneByEmail(String email);
+
+	int secessionAll(TravelMaker_MemberDTO dto);
+
+	TravelMaker_MemberDTO isWithDrawl(TravelMaker_MemberDTO dto);
+
 	
 }

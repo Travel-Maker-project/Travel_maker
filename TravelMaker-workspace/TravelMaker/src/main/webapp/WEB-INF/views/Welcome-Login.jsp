@@ -136,5 +136,10 @@ loginBtn.addEventListener("click", async (event) => {
             
         }
     });
-});</script>
+});
+
+const deleted = `${deleted}`;
+console.log(deleted)
+
+</script>
 </html>

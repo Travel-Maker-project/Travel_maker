@@ -57,4 +57,21 @@ public class MemberService {
 		}
 		return null;
 	}
+
+
+	public TravelMaker_MemberDTO selectOneByEmail(String email) {
+				return memberDAO.selectOneByEmail(email);
+	}
+
+
+	public int secessionAll(TravelMaker_MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return memberDAO.secessionAll(dto);
+	}
+
+
+	public TravelMaker_MemberDTO isWithDrawl(TravelMaker_MemberDTO dto) {
+		
+		return memberDAO.isWithDrawl(dto);
+	}
 }

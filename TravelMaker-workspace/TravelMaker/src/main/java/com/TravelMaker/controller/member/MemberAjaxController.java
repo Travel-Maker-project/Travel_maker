@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @RestController
@@ -83,6 +84,14 @@ public class MemberAjaxController {
         return msg;
     }
     
+    @GetMapping("/checkExistEmail")
+    public String checkExistEmail(String email){
+        TravelMaker_MemberDTO dto = memberService.selectOneByEmail(email);
+        String msg = dto == null ? "1" : "0";
+
+        System.out.println(msg);
+        return msg;
+    }
     
     //로그인 비동기 확인
     @PostMapping("/checkLogin")
@@ -92,6 +101,12 @@ public class MemberAjaxController {
     	TravelMaker_MemberDTO user = memberService.checkUser(dto);
 		if(user!=null) {
 			session.setAttribute("user", user);
+			if(user.getTravelMaker_Member_Coupon()!=0) {
+				session.setAttribute("hasCoupon", 1);
+			}else {
+				session.setAttribute("hasCoupon", 0);
+				
+			}
 			return "성공";
 		}
 		else {
@@ -99,6 +114,33 @@ public class MemberAjaxController {
 		}
     	
     	
+    }
+    
+    @PostMapping("/myPage/secession")
+    public Map<String, String> mbSecession(HttpSession session) {
+        TravelMaker_MemberDTO dto = (TravelMaker_MemberDTO) session.getAttribute("user");
+        // 1. 비밀번호 일치하는지 확인 후 int값이든 boolean 값이든 반환받고
+        
+        // 2. 1의 결과에 따라서 휴면회원으로 전환
+        int row = memberService.secessionAll(dto);
+//        System.out.println(row != 0 ? "성공" : "실패");
+        
+        // 3. 휴면회원으로 전환하면서 메세지를 저장하고, 메세지를 반환
+        
+        // JSON 데이터를 반환
+        Map<String, String> response = new HashMap<>();
+        response.put("result", (row != 0) ? "성공" : "실패");
+//        String msg = "";
+//        if (row != 0) {
+//        	msg = "회원탈퇴 되었습니다";
+//        } else {
+//        	msg = "회원탈퇴에 실패하였습니다";
+//        }
+        if(row == 1) {
+        	session.invalidate();
+        }
+        
+        return response;
     }
     
    

@@ -29,6 +29,7 @@
 				<value>classpath:mybatis/lodge_mapper.xml</value>
 				<value>classpath:mybatis/member_mapper.xml</value> 
 				<value>classpath:mybatis/PromotionCoupon_mapper.xml</value> 
+				<value>classpath:mybatis/meeting_board_mapper.xml</value>
 			</list>
 		</property>
 		

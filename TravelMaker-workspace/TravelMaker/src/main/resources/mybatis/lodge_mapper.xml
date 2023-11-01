@@ -33,5 +33,15 @@
 		FETCH FIRST 20 ROWS ONLY
 			
 	</select>
+	
+	<select id="getRoomList" parameterType="int" resultType="room">
+	
+		select * from lodge_room_type where lodge_idx=${idx}
+	</select>
+	
+	<select id="getOneRoom" parameterType="int" resultType="room">
+		select * from lodge_room_type where lodge_room_type_idx=${idx}
+	
+	</select>
 </mapper>
 

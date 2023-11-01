@@ -6,7 +6,7 @@
 <script>
     function first_onmouseover(){
         first.innerText="숙소";
-        first.style.width = '320px';
+        first.style.width = '341px';
         first.style.height = '50%';
         first.style.backgroundSize = '1000px';
         first.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -21,7 +21,7 @@
     }
     function second_onmouseover(){
         second.innerText="혼자? 같이!";
-        second.style.width = '320px';
+        second.style.width = '341px';
         second.style.height = '50%';
         second.style.backgroundSize = '1000px';
         second.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -32,11 +32,11 @@
         second.style.background = 'none';
     }
     function second_onclick() {
-        location.href = 'https://www.naver.com';
+        location.href = '${cpath}/Meeting/meeting_main';
     }
     function third_onmouseover(){
         third.innerText="여행지 추천";
-        third.style.width = '320px';
+        third.style.width = '341px';
         third.style.height = '50%';
         third.style.backgroundSize = '1000px';
         third.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -51,7 +51,7 @@
     }
     function four_onmouseover(){
         four.innerText="이벤트";
-        four.style.width = '320px';
+        four.style.width = '341px';
         four.style.height = '50%';
         four.style.backgroundSize = '1000px';
         four.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';

@@ -27,5 +27,21 @@
         SELECT * FROM TRAVELMAKER_MEMBER
             WHERE TRAVELMAKER_MEMBER_USERNICKNAME = #{nickname}
     </select>
+    
+    <select id="selectOneByEmail" resultType="member" parameterType="String">
+        SELECT * FROM TRAVELMAKER_MEMBER
+            WHERE TRAVELMAKER_MEMBER_EMAIL = #{email}
+    </select>
+    
+    <update id="secessionAll" parameterType="member">
+    	UPDATE TRAVELMAKER_MEMBER
+		SET travelMaker_Member_IsExist = 'N'
+		WHERE travelMaker_Member_Idx = #{travelMaker_Member_Idx}
+    </update>
+    
+    <select id="isWithDrawl" parameterType="member" resultType="member">
+    	 SELECT * FROM TRAVELMAKER_MEMBER
+    	 	where travelmaker_member_userid = #{travelMaker_Member_UserId} and travelMaker_Member_IsExist = 'N'
+    </select>
 
 </mapper>

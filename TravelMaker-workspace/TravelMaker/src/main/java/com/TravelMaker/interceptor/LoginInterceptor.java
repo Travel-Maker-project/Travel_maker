@@ -8,21 +8,24 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.TravelMaker.model.TravelMaker_MemberDTO;
+
 
 public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
+		String cpath = request.getContextPath();
 		
-		Object user = session.getAttribute("user");
+		TravelMaker_MemberDTO user = (TravelMaker_MemberDTO)session.getAttribute("user");
 		
 		if(user==null) {
-			String cpath = request.getContextPath();
 			
 			response.sendRedirect(cpath+"/WelcomeLogin");
 			return false;
 		}
+		
 		
 		return true;
 	}

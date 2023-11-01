@@ -50,7 +50,6 @@ public class KaKaoService {
 
 			// 결과 코드가 200이라면 성공
 			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode : " + responseCode);
 			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = "";
@@ -59,7 +58,6 @@ public class KaKaoService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
 
 			// jackson objectmapper 객체 생성
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -70,8 +68,6 @@ public class KaKaoService {
 			access_Token = jsonMap.get("access_token").toString();
 			refresh_Token = jsonMap.get("refresh_token").toString();
 
-			System.out.println("access_token : " + access_Token);
-			System.out.println("refresh_token : " + refresh_Token);
 
 			br.close();
 			bw.close();
@@ -104,8 +100,6 @@ public class KaKaoService {
 		while ((line = br.readLine()) != null) {
 			result += line;
 		}
-		System.out.println("responseBody : " + result);
-		System.out.println("result type" + result.getClass().getName());
 
 		try {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -116,12 +110,6 @@ public class KaKaoService {
 		Map<String, Object> properties = (Map<String, Object>) jsonMap.get("properties");
 		Map<String, Object> kakao_account = (Map<String, Object>) jsonMap.get("kakao_account");
 
-		 System.out.println(properties.get("nickname"));
-		 System.out.println(kakao_account.get("birthday"));
-		 System.out.println(kakao_account.get("gender"));
-		 System.out.println(properties.get("profile_image"));
-		 System.out.println(properties.get("thumbnail_image"));
-		 System.out.println(jsonMap.get("id"));
 
 		String nickname = properties.get("nickname").toString();
 		String birthday = kakao_account.get("birthday").toString();
@@ -154,30 +142,22 @@ public class KaKaoService {
 	return userInfo;
 
 }
-	public void logout(String access_Token, String userid) {
-	    String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+	public void logout(String access_token) {
+	    String reqURL = "https://kapi.kakao.com/v1/user/logout";
 	    try {
 	        URL url = new URL(reqURL);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Authorization", "Bearer" + access_Token);
-//	        
-//	        // 요청 본문 데이터 추가
-//	        String data = "target_id_type=user_id&target_id="+userid;
-//	        conn.setDoOutput(true);
-//	        try (OutputStream os = conn.getOutputStream()) {
-//	            byte[] input = data.getBytes("UTF-8");
-//	            os.write(input, 0, input.length);
-//	        }
-	        
+	        conn.setRequestMethod("POST"); // HTTP POST 메서드를 사용하도록 변경
+	        conn.setRequestProperty("Authorization", "Bearer " + access_token);
+
 	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-	        
+	        System.out.println("responseCode: " + responseCode);
+
 	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        
+
 	        String result = "";
 	        String line = "";
-	        
+
 	        while ((line = br.readLine()) != null) {
 	            result += line;
 	        }
@@ -186,4 +166,30 @@ public class KaKaoService {
 	        e.printStackTrace();
 	    }
 	}
+	
+//	public void logout(String access_token) {
+//	    String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+//	    try {
+//	        URL url = new URL(reqURL);
+//	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//	        conn.setRequestMethod("POST"); // HTTP POST 메서드를 사용하도록 변경
+//	        conn.setRequestProperty("Authorization", "Bearer " + access_token);
+//
+//	        int responseCode = conn.getResponseCode();
+//	        System.out.println("responseCode: " + responseCode);
+//
+//	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//
+//	        String result = "";
+//	        String line = "";
+//
+//	        while ((line = br.readLine()) != null) {
+//	            result += line;
+//	        }
+//	        System.out.println(result);
+//	    } catch (IOException e) {
+//	        e.printStackTrace();
+//	    }
+//	}
+
 }

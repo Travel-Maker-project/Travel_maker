@@ -11,7 +11,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${cpath }/css/main_css/myPage.css" type="text/css">
 </head>
-
+<c:if test="${user==null}">
+	<c:redirect url="/" />
+</c:if>
 <body>
  <div id="mypage" class="flex_center">
         <div class="profile flex_center">
@@ -29,8 +31,7 @@
                     </button>
                 </div>
                 <div class="flex_center">
-                    <h2>닉네임</h2>
-                    <!-- ${TRAVELMAKER_MEMBER_USERNICKNAME} -->
+                    <h2>${user.travelMaker_Member_UserNickName}</h2>
                 </div>
             </div>
         </div>
@@ -41,22 +42,19 @@
             <div class="info_item flex_center">
                 <div class="border_bottom">
                     <img src="${cpath}/img/name.png">
-                    <span>이름</span>
-                    <!-- ${TRAVELMAKER_MEMBER_USERNAME} -->
+                    <span>${user.travelMaker_Member_UserName}</span>
                 </div>
             </div>
             <div class="info_item flex_center">
                 <div class="border_bottom">
                     <img src="${cpath}/img/pun.png">
-                    <span>전화번호</span>
-                    <!-- ${TRAVELMAKER_MEMBER_PNUM} -->
+                    <span>${user.travelMaker_Member_Pnum}</span>
                 </div>
             </div>
             <div class="info_item flex_center">
                 <div>
                     <img src="${cpath}/img/mail.png">
-                    <span>이메일(수정x)</span>
-                    <!-- ${TRAVELMAKER_MEMBER_EMAIL} -->
+                    <span>${user.travelMaker_Member_Email}</span>
                 </div>
             </div>
         </div>
@@ -77,8 +75,8 @@
                         <input id="membership_quit_userpw_check" class="unset" type="password" name="TRAVELMAKER_MEMBER_USERPW" placeholder="현재 비밀번호를 입력해주세요." 
                         autocomplete="off" required>
                     </div>
-                    <input id="membership_quit_userpw_none" type="password" value="1234" style="display: none;">
-                    <!-- value=${TRAVELMAKER_MEMBER_USERPW} -->
+                    <input id="membership_quit_userpw_none" type="password" value=${user.travelMaker_Member_UserPw} style="display: none;">
+                    <!-- value=${travelMaker_Member_UserPw} -->
                 </div>
                 <input id="membership_quit_complete" type="submit" value="확인">
             </form>
@@ -183,6 +181,8 @@
             profileModifyCheck.showModal()
         })
         profileModifyCheckBtn.addEventListener("click", () => {
+        	
+        	
             if(userpwCheck.value == userpwNone.value) {
                 profileModify.showModal()
             }
@@ -190,15 +190,7 @@
                 alert("비밀번호가 틀렸습니다.")
             }
         })
-        membershipQuitComplete.addEventListener("click", () => {
-        	preventDefault();
-            if(membershipQuitUserpwCheck.value == membershipQuitUserpwNone.value) {
-            	location.href = '${cpath}/Member/outMember'
-            }
-            else {
-                alert("비밀번호가 틀렸습니다.")
-            }
-        })
+      
         inputFile.addEventListener("change", function() {
             const fileName = inputFile.value;
             console.log('fileName : ', fileName)
@@ -219,6 +211,46 @@
             }
         }
         inputFile.addEventListener('change', changeHandler)
+        
+        
+        const checkbtn = document.getElementById('membership_quit_complete')
+        const inputpw = document.getElementById('membership_quit_userpw_check') // membership_quit_userpw_check
+       
+        
+        const url = '${cpath}/ajax/myPage/secession';
+        
+        
+        
+        const handler = async function(event) {
+        	event.preventDefault();
+            const value = inputpw.value; 
+            
+
+            if (value === '') {
+                alert('비밀번호를 입력해주세요.');
+            } 
+            else {
+              		await fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify({ userpw: value }), 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(resp => {
+                   return resp.json();
+                })
+                .then(data => {
+                   alert(data.result);
+                   location.href='${cpath}'
+                })
+            };
+        }
+
+        checkbtn.addEventListener('click', handler);
+        
+        
+        
     </script>
 </body>
 </html>
